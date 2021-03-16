@@ -1,38 +1,28 @@
-const Datastore = require('nedb');
-//embedded mode
-// const db = new Datastore({ filename: "db.db", autoload: true });
-//in-memory mode
-// const db = new nedb({});
+const Datastore = require("nedb");
 
 class TrainingPlan {
-  constructor(dbFilePath) {
-    // if (dbFilePath) {
-    //     //embedded
-    //     this.db = new Datastore({ filename: "db.db", autoload: true });
-    // } else {
-    //     //in memory 
-    //     this.db = new Datastore();
-    // }
+    constructor(dbFilePath) {
+        this.db = new Datastore({ filename: "database.db", autoload: true });
+    }
 
-    this.db = new Datastore ({ filename: "database.db", autoload: true});
-}
-
-    //a function to seed the database
+    //a function to seed the database initially
     init() {
         this.db.insert({
-            subject: 'Run more',
-            contents: 'I want to run more often - at least three times per week.',
-            published: '2020-02-16',
-            author: 'Zuby'
+            subject: "Run more",
+            contents:
+                "I want to run more often - at least three times per week.",
+            published: "2020-02-16",
+            author: "Zuby",
         });
         //for later debugging
         console.log("example database entry 1 inserted");
 
         this.db.insert({
             subject: "More situps",
-            contents: 'I want to do more situps a week - at least 500 in a week.!',
-            published: '2020-02-18',
-            author: 'Zubair'
+            contents:
+                "I want to do more situps a week - at least 500 in a week.!",
+            published: "2020-02-18",
+            author: "Zubair",
         });
         //for later debugging
         console.log("example database entry 2 inserted");
@@ -51,13 +41,13 @@ class TrainingPlan {
                     //if no error resolve the promise and return the data
                 } else {
                     resolve(entries);
-                    //to see what the returned data looks like
-                    console.log("function all() returns: ", entries);
+                    //returns all entries
                 }
             });
         });
     }
 
+    // Function to add an entry to the database
     addEntry(author, subject, contents) {
         var entry = {
             author: author,
@@ -76,17 +66,38 @@ class TrainingPlan {
         });
     }
 
+    // Function to remove a specific entry from the database
+    deleteEntry(id) {
+        return new Promise((resolve, reject) => {
+            this.db.remove({ _id: id }, function (err, res) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log(
+                        "removed entry with ID of ",
+                        id,
+                        " from database"
+                    );
+                }
+            });
+        });
+    }
+
+    // Returns entries that match a specific author
     getEntriesByUser(authorName) {
         return new Promise((resolve, reject) => {
-            this.db.find({ 'author': authorName }, function (err, entries) {
+            this.db.find({ author: authorName }, function (err, entries) {
                 if (err) {
                     reject(err);
                 } else {
                     resolve(entries);
-                    console.log("function getEntriesByUser() returns: ", entries);
+                    console.log(
+                        "function getEntriesByUser() returns: ",
+                        entries
+                    );
                 }
-            })
-        })
+            });
+        });
     }
 }
 

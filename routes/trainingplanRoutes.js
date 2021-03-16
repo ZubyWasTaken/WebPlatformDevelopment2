@@ -10,6 +10,8 @@ router.get('/new', controller.show_new_entries);
 
 router.post('/new', controller.post_new_entry);
 
+router.get('/delete/:id', controller.delete_entry);
+
 router.get('/posts/:author', controller.show_user_entries);
 
 router.get("/about", function (req, res) {

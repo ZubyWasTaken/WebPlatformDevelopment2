@@ -9,6 +9,23 @@ exports.entries_list = function (req, res) {
     db.getAllEntries();
 };
 
+exports.delete_entry = function (req, res){
+    // db.getSingleEntry().then((list) =>{
+        // let user = req.params.author;
+        console.log("ID of entry is", req.params.id);
+
+        let id = req.params.id;
+
+        db.deleteEntry(id);
+
+        res.redirect("/")
+        
+        // });
+    // }
+    
+
+};
+
 exports.show_user_entries = function (req, res) {
     console.log("filtering author name", req.params.author);
 
