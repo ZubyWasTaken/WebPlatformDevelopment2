@@ -2,10 +2,12 @@ const Datastore = require("nedb");
 
 class TrainingPlan {
     constructor(dbFilePath) {
+        // creates a database called database.db if it doesnt exist
+        // if exists, it sets variable db to that database
         this.db = new Datastore({ filename: "database.db", autoload: true });
     }
 
-    //a function to seed the database initially
+    //a function to seed the database initially with 2 sets of prepopulated data
     init() {
         this.db.insert({
             subject: "Run more",
@@ -14,7 +16,7 @@ class TrainingPlan {
             published: "2020-02-16",
             author: "Zuby",
         });
-        //for later debugging
+        //debugging - to show it added to database correctly
         console.log("example database entry 1 inserted");
 
         this.db.insert({
@@ -24,7 +26,7 @@ class TrainingPlan {
             published: "2020-02-18",
             author: "Zubair",
         });
-        //for later debugging
+        //debugging - to show it added to database correctly
         console.log("example database entry 2 inserted");
     }
 
@@ -48,6 +50,7 @@ class TrainingPlan {
     }
 
     // Function to add an entry to the database
+    // author, subject, and contents are passed in from the form
     addEntry(author, subject, contents) {
         var entry = {
             author: author,
@@ -57,6 +60,7 @@ class TrainingPlan {
         };
         console.log("entry created", entry);
 
+        //adds the entry variable created above from the passed in data
         this.db.insert(entry, function (err, doc) {
             if (err) {
                 console.log("Error inserting document", subject);
@@ -67,16 +71,16 @@ class TrainingPlan {
     }
 
     // Function to remove a specific entry from the database
+    // id is passed in from button click
     deleteEntry(id) {
         return new Promise((resolve, reject) => {
+            // searches database for matching id
             this.db.remove({ _id: id }, function (err, res) {
                 if (err) {
                     reject(err);
                 } else {
                     console.log(
-                        "removed entry with ID of ",
-                        id,
-                        " from database"
+                        "removed entry with ID of ",id," from database"
                     );
                 }
             });
@@ -84,16 +88,17 @@ class TrainingPlan {
     }
 
     // Returns entries that match a specific author
+    // authorName is passed in from clicking the coloured name in entry
     getEntriesByUser(authorName) {
         return new Promise((resolve, reject) => {
+            // searches database for matching author name
             this.db.find({ author: authorName }, function (err, entries) {
                 if (err) {
                     reject(err);
                 } else {
                     resolve(entries);
                     console.log(
-                        "function getEntriesByUser() returns: ",
-                        entries
+                        "function getEntriesByUser() returns: ", entries
                     );
                 }
             });
