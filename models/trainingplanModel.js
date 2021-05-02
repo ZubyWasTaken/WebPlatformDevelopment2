@@ -1,4 +1,5 @@
 const Datastore = require("nedb");
+const userDao = require('../models/userModel.js');
 
 class TrainingPlan {
     constructor(dbFilePath) {
