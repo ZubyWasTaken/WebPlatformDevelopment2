@@ -1,5 +1,6 @@
 const trainingplanDAO = require("../models/trainingplanModel");
 const db = new trainingplanDAO();
+const userDao = require('../models/userModel.js');
 
 // initializes the database and creates database by calling init function
 db.init();
@@ -86,7 +87,7 @@ exports.show_register_page = function (req, res) {
 exports.post_new_user = function (req, res) {
     const user = req.body.username;
     const password = req.body.pass;
-    //console.log("register user", user, "password",  password);
+    console.log("register user", user, "password",  password);
     if (!user || !password) {
         res.send(401, "no user or no password");
         return;

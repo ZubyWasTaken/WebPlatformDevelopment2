@@ -8,7 +8,6 @@ exports.init = function (app) {
         new Strategy(function (username, password, cb) {
             // cb is callback
             userModel.lookup(username, function (err, user) {
-                database;
                 console.log("lookup user", username);
                 if (err) {
                     console.log("error looking up user", err);
@@ -18,7 +17,7 @@ exports.init = function (app) {
                     console.log("user ", username, " not found");
                     return cb(null, false);
                 }
-                //compare provided password with that in the
+                //compare provided password with that in the database
                 bcrypt.compare(password, user.password, function (err, result) {
                     if (result) {
                         cb(null, user);

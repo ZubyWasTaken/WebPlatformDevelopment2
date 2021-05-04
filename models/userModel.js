@@ -3,13 +3,10 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 class UserDAO {
     constructor(dbFilePath) {
-        if (dbFilePath) {
-            //embedded
-            this.db = new Datastore({ filename: dbFilePath, autoload: true });
-        } else {
-            //in memory
-            this.db = new Datastore();
-        }
+       
+          
+            this.db = new Datastore({ filename: "users.db", autoload: true });
+
     }
     // for the demo the password is the bcrypt of the user name
     init() {
@@ -18,13 +15,13 @@ class UserDAO {
             password:
                 "$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C",
         });
-        //console.log('user record inserted in init');
+        console.log('user record inserted in init');
         this.db.insert({
             user: "Ann",
             password:
                 "$2b$10$bnEYkqZM.MhEF/LycycymOeVwkQONq8kuAUGx6G5tF9UtUcaYDs3S",
         });
-        //console.log('user record inserted in init');
+        console.log('user record inserted in init');
         return this;
     }
     create(username, password) {
@@ -34,7 +31,7 @@ class UserDAO {
                 user: username,
                 password: hash,
             };
-            //console.log('user entry is: ', entry);
+            console.log('user entry is: ', entry);
             that.db.insert(entry, function (err) {
                 if (err) {
                     console.log("Can't insert user: ", username);
