@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/trainingplanControllers");
-const auth = require("../auth/auth.js");
+const auth = require("../auth/auth");
 const { ensureLoggedIn } = require("connect-ensure-login");
 
 router.get("/", controller.landing_page);

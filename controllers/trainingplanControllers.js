@@ -1,6 +1,6 @@
 const trainingplanDAO = require("../models/trainingplanModel");
 const db = new trainingplanDAO();
-const userDao = require('../models/userModel.js');
+const userDao = require("../models/userModel.js");
 
 // initializes the database and creates database by calling init function
 db.init();
@@ -49,6 +49,7 @@ exports.landing_page = function (req, res) {
             res.render("entries", {
                 title: "Training Plan",
                 entries: list,
+                user: req.user,
             });
             // prints to console if all entires have been retrieved properly
             console.log("promise resolved");
@@ -87,7 +88,7 @@ exports.show_register_page = function (req, res) {
 exports.post_new_user = function (req, res) {
     const user = req.body.username;
     const password = req.body.pass;
-    console.log("register user", user, "password",  password);
+    console.log("register user", user, "password", password);
     if (!user || !password) {
         res.send(401, "no user or no password");
         return;
@@ -103,7 +104,9 @@ exports.post_new_user = function (req, res) {
 };
 
 exports.show_login_page = function (req, res) {
-    res.render("user/login");
+    res.render("user/login", {
+        title: "Training Plan",
+    });
 };
 
 exports.authorize = function (redirect) {
@@ -111,7 +114,7 @@ exports.authorize = function (redirect) {
 };
 
 exports.post_login = function (req, res) {
-    response.redirect("/");
+    res.redirect("/");
 };
 
 exports.show_user_entries = function (req, res) {
@@ -119,7 +122,7 @@ exports.show_user_entries = function (req, res) {
     db.getEntriesByUser(user)
         .then((entries) => {
             res.render("entries", {
-                title: "Guest Book",
+                title: "Training Plan",
                 user: req.user,
                 entries: entries,
             });

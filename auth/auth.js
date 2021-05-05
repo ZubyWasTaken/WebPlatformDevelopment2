@@ -33,17 +33,21 @@ exports.init = function (app) {
     passport.serializeUser(function (user, cb) {
         cb(null, user.user);
     });
+
     passport.deserializeUser(function (id, cb) {
         userModel.lookup(id, function (err, user) {
             if (err) {
                 return cb(err);
             }
+            console.log("user is:", user);
             cb(null, user);
         });
     });
+
     app.use(passport.initialize());
     app.use(passport.session());
 };
+
 exports.authorize = function (redirect) {
     return passport.authenticate("local", { failureRedirect: redirect });
 };
