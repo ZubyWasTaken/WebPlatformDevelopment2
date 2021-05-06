@@ -141,7 +141,7 @@ exports.logout = function (req, res) {
 exports.show_new_entries = function (req, res) {
     res.render("newEntry", {
         title: "Guest Book",
-        user: req.user,
+        user: req.user.user
     });
 };
 

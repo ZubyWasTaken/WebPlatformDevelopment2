@@ -10,7 +10,9 @@ router.get("/trainingplan", controller.entries_list);
 
 router.get("/new", ensureLoggedIn("/login"), controller.show_new_entries);
 
-router.post("/new", controller.post_new_entry);
+// router.post("/new", ensureLoggedIn("/login"), controller.post_new_entry);
+
+router.post("/new", ensureLoggedIn("/login"), controller.post_new_entry);
 
 router.get("/delete/:id", controller.delete_entry);
 
@@ -30,7 +32,7 @@ router.post("/login", auth.authorize("/login"), controller.post_login);
 
 router.get("/logout", controller.logout);
 
-router.post("/new", ensureLoggedIn("/login"), controller.post_new_entry);
+
 
 router.use(function (req, res) {
     res.status(404);

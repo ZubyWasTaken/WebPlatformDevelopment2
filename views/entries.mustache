@@ -1,31 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {{>header}}
+        {{> partials/header}}
     </head>
 
     <body class="container">
         <h1>{{ title }}</h1>
 
-        <div class="text-right">
-            <a href="/new" class="btn btn-primary">
-                Write in the training plan
-            </a>
-        </div>
-
-        <br />
-
-        <div class="text-right" style="margin-bottom: 1em">
-            {{^user}}
-            <a id="login" href="/register" class="btn btn-primary">
-                Register
-            </a>
-            <a id="login" href="/login" class="btn btn-primary"> Sign in </a>
-            {{/user}}
-            {{#user}}
-            <a id="logout" href="/logout" class="btn btn-primary"> Sign out </a>
-            {{/user}}
-        </div>
+        {{> partials/buttons}}
 
         {{#entries}}
         <div class="card" data-id="{{ id }}">

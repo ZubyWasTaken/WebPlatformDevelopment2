@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-{{>header}}
+{{> partials/header}}
 </head>
 <body class="container">
 <h1>{{title}}</h1>
@@ -10,7 +10,7 @@
   <div class="form-group">
     <label for="author">Author</label>
     <input type="text" class="form-control" id="author"
-           name="author" placeholder="Written by" required>
+           name="author"value="{{user}}" placeholder="Written by" required>
   </div>
   <div class="form-group">
     <label for="subject">Subject</label>
