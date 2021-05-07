@@ -5,6 +5,16 @@
 
 ## Developed using Node.js and Node Express with NeDB
 
+To install node modules
+```
+npm i
+```
+
+To start the node server and the website on http://localhost:3000/
+```
+npm index
+```
+
 ###### Scope of project
 
 To implement a web-based activity planner application to help students keep track of their weekly exercise goals as well as their achievements.
