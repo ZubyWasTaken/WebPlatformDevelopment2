@@ -60,16 +60,39 @@ exports.landing_page = function (req, res) {
         });
 };
 
-exports.post_new_entry = function (req, res) {
+// exports.post_new_entry = function (req, res) {
+//     // for debugging - to show button click worked
+//     console.log("processing post-new_entry controller");
+//     if (!req.body) {
+//         // only happens if the entry doesn't have an author
+//         response.status(400).send("Entries must have an author.");
+//         return;
+//     }
+//     //calls function to add entry to database
+//     db.addEntry(req.body.author, req.body.subject, req.body.contents);
+//     // redirects to root
+//     res.redirect("/");
+// };
+
+exports.post_new_week = function (req, res) {
     // for debugging - to show button click worked
     console.log("processing post-new_entry controller");
-    if (!req.body.author) {
+    if (!req.body) {
         // only happens if the entry doesn't have an author
-        response.status(400).send("Entries must have an author.");
+        response.status(400).send("Entry failed.");
+        res.redirect("/");
         return;
     }
-    //calls function to add entry to database
-    db.addEntry(req.body.author, req.body.subject, req.body.contents);
+    db.addWeek(
+        req.body.author,
+        req.body.title,
+        req.body.subject,
+        req.body.contents,
+        req.body.week,
+        req.body.goal1,
+        req.body.goal2,
+        req.body.goal3
+    );
     // redirects to root
     res.redirect("/");
 };
@@ -77,7 +100,7 @@ exports.post_new_entry = function (req, res) {
 exports.show_new_entries = function (req, res) {
     //renders newEntry page where user enters their details for their new entry
     res.render("newEntry", {
-        title: "Training Plan",
+        title: "New Entry",
     });
 };
 
@@ -105,7 +128,7 @@ exports.post_new_user = function (req, res) {
 
 exports.show_login_page = function (req, res) {
     res.render("user/login", {
-        title: "Training Plan",
+        title: "Login",
     });
 };
 
@@ -133,6 +156,22 @@ exports.show_user_entries = function (req, res) {
         });
 };
 
+exports.show_single_entry = function (req, res) {
+    let id = req.params.id;
+    db.getEntryByID(id)
+        .then((entries) => {
+            res.render("singlePlan", {
+                title: "Individual Training Plan",
+                user: req.user,
+                entries: entries,
+            });
+        })
+        .catch((err) => {
+            console.log("Error: ");
+            console.log(JSON.stringify(err));
+        });
+};
+
 exports.logout = function (req, res) {
     req.logout();
     res.redirect("/");
@@ -141,7 +180,13 @@ exports.logout = function (req, res) {
 exports.show_new_entries = function (req, res) {
     res.render("newEntry", {
         title: "Guest Book",
-        user: req.user.user
+        user: req.user.user,
+    });
+};
+
+exports.show_edit_page = function (req, res) {
+    res.render("editPage", {
+
     });
 };
 

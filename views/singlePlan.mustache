@@ -9,6 +9,12 @@
 
         {{> partials/buttons}}
 
+        <div class="text-right">
+            <a href="/" class="btn btn-primary">
+                Home
+            </a>
+        </div>
+
         {{#entries}}
             <div class="card" data-id="{{ _id }}">
                 <div class="card-header">
@@ -56,21 +62,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="clearfix">
-                    <a href="/{{author}}/{{ _id }}">
-                        <input type="submit" value="View" class="btn btn-primary"/>
-                    </a>
-
-                    <a href="/{{ _id }}/edit">
-                        <input type="submit" value="Edit" class="btn btn-primary"/>
-                    </a>
-
-                    <a href="/delete/{{ _id }}">
-                        <input type="submit" value="Delete" class="btn btn-primary"/>
-                    </a>
-                </div>
-                
             </div>
-            <br></body>
-    </body>
-</html>{{/entries}}{{^entries}}No entries yet :-(.</body></html>{{/entries}}</body></html>
+        {{/entries}}
+        {{^entries}}
+        No entries yet :-(.</body>
+</html></body></html>{{/entries}}</body></html></html

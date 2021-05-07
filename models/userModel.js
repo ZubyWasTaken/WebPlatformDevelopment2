@@ -10,18 +10,18 @@ class UserDAO {
     }
     // for the demo the password is the bcrypt of the user name
     init() {
-        this.db.insert({
-            user: "Peter",
-            password:
-                "$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C",
-        });
-        console.log('user record inserted in init');
-        this.db.insert({
-            user: "Ann",
-            password:
-                "$2b$10$bnEYkqZM.MhEF/LycycymOeVwkQONq8kuAUGx6G5tF9UtUcaYDs3S",
-        });
-        console.log('user record inserted in init');
+        // this.db.insert({
+        //     user: "Peter",
+        //     password:
+        //         "$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C",
+        // });
+        // console.log('user record inserted in init');
+        // this.db.insert({
+        //     user: "Ann",
+        //     password:
+        //         "$2b$10$bnEYkqZM.MhEF/LycycymOeVwkQONq8kuAUGx6G5tF9UtUcaYDs3S",
+        // });
+        // console.log('user record inserted in init');
         return this;
     }
     create(username, password) {

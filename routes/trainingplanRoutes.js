@@ -12,11 +12,17 @@ router.get("/new", ensureLoggedIn("/login"), controller.show_new_entries);
 
 // router.post("/new", ensureLoggedIn("/login"), controller.post_new_entry);
 
-router.post("/new", ensureLoggedIn("/login"), controller.post_new_entry);
+// router.post("/new", ensureLoggedIn("/login"), controller.post_new_entry);
+
+router.post("/new", ensureLoggedIn("/login"), controller.post_new_week);
 
 router.get("/delete/:id", controller.delete_entry);
 
 router.get("/posts/:author", controller.show_user_entries);
+
+router.get("/:author/:id", controller.show_single_entry);
+
+router.get("/:id/edit", controller.show_edit_page);
 
 router.get("/register", controller.show_register_page);
 
