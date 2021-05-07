@@ -5,12 +5,6 @@ const userDao = require("../models/userModel.js");
 // initializes the database and creates database by calling init function
 db.init();
 
-exports.entries_list = function (req, res) {
-    res.send("<h1>Not yet implemented: show users training plan.</h1>");
-    // displays all entries to console for debugging.
-    db.getAllEntries();
-};
-
 exports.delete_entry = function (req, res) {
     //for debugging - to see if the correct ID of entry is selected
     console.log("ID of entry is", req.params.id);
@@ -59,6 +53,26 @@ exports.landing_page = function (req, res) {
             console.log("promise rejected", err);
         });
 };
+
+exports.show_my_plans = function (req, res){
+
+    let username = req.params.author;
+
+    db.getAllEntries(username)
+        .then((list) => {
+            res.render("myPosts", {
+                title: "My Training Plans",
+                entries: list,
+                user: req.user.user,
+            });
+            // prints to console if all entires have been retrieved properly
+            console.log("promise resolved");
+        })
+        .catch((err) => {
+            // prints to console if all entires have not been retrieved properly
+            console.log("promise rejected", err);
+        });
+}
 
 // exports.post_new_entry = function (req, res) {
 //     // for debugging - to show button click worked
@@ -185,10 +199,48 @@ exports.show_new_entries = function (req, res) {
 };
 
 exports.show_edit_page = function (req, res) {
-    res.render("editPage", {
 
-    });
+    let id = req.params.id;
+    db.getEntryByID(id)
+        .then((entries) =>{
+            res.render("editPage", {
+                title: "Editing Training Plan",
+                user: req.user.user,
+                entries: entries,
+            });
+        })
+        .catch((err) => {
+            console.log("Error: ");
+            console.log(JSON.stringify(err));
+        });
+    
 };
+
+exports.edit_goal = function (req, res) {
+    let id = req.params.id;
+    db.deleteEntry(id)
+    console.log("processing post-new_entry controller");
+    if (!req.body) {
+        // only happens if the entry doesn't have an author
+        response.status(400).send("Entry failed.");
+        res.redirect("/");
+        return;
+    }
+    db.addWeek(
+        req.body.author,
+        req.body.title,
+        req.body.subject,
+        req.body.contents,
+        req.body.week,
+        req.body.goal1,
+        req.body.goal2,
+        req.body.goal3
+    );
+    // redirects to root
+    res.redirect("/");
+}
+
+
 
 exports.server_error = function (err, req, res, next) {
     // occurs when an error 500 occurs

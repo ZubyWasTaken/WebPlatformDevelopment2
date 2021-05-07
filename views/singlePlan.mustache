@@ -14,10 +14,12 @@
         {{#entries}}
             <div class="card" data-id="{{ _id }}">
                 <div class="card-header">
-                    Written by
+                    <b>{{title}}</b>
+                    - Written by
                     <a href="/user/{{ author }}">{{ author }}</a>, on
                     {{ published }}
                 </div>
+
                 <div class="card-body">
                     <div class="col-sm-6">
                         <div class="card">

@@ -6,7 +6,6 @@ const { ensureLoggedIn } = require("connect-ensure-login");
 
 router.get("/", controller.landing_page);
 
-router.get("/trainingplan", controller.entries_list);
 
 router.get("/new", ensureLoggedIn("/login"), controller.show_new_entries);
 
@@ -20,9 +19,13 @@ router.get("/delete/:id", controller.delete_entry);
 
 router.get("/user/:author", controller.show_user_entries);
 
-router.get("/user/:author/:id", controller.show_single_entry);
+router.get("/share/:author/:id", controller.show_single_entry);
 
-router.get("/:id/edit", controller.show_edit_page);
+router.get("/:id/edit", ensureLoggedIn("/login"), controller.show_edit_page);
+
+router.post("/:id/edit", controller.edit_goal);
+
+router.get("/myplans", ensureLoggedIn("/login"), controller.show_my_plans);
 
 router.get("/register", controller.show_register_page);
 
@@ -33,6 +36,10 @@ router.get("/about", function (req, res) {
 });
 
 router.get("/user", function (req, res) {
+    res.redirect("/");
+})
+
+router.get("/share", function (req, res) {
     res.redirect("/");
 })
 

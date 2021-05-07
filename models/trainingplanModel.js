@@ -52,26 +52,23 @@ class TrainingPlan {
         });
     }
 
-    // Function to add an entry to the database
-    // author, subject, and contents are passed in from the form
-    // addEntry(author, subject, contents) {
-    //     var entry = {
-    //         author: author,
-    //         subject: subject,
-    //         contents: contents,
-    //         published: new Date().toISOString().split("T")[0],
-    //     };
-    //     console.log("entry created", entry);
-
-    //     //adds the entry variable created above from the passed in data
-    //     this.db.insert(entry, function (err, doc) {
-    //         if (err) {
-    //             console.log("Error inserting document", subject);
-    //         } else {
-    //             console.log("document inserted into the database", doc);
-    //         }
-    //     });
-    // }
+    getMyEntries(author) {
+        //return a Promise object, which can be resolved or rejected
+        return new Promise((resolve, reject) => {
+            //use the find() function of the database to get the data,
+            //with error first callback function, err for error, entries for data
+            this.db.find({ author: author }, function (err, entries) {
+                //if error occurs reject Promise
+                if (err) {
+                    reject(err);
+                    //if no error resolve the promise and return the data
+                } else {
+                    resolve(entries);
+                    //returns all entries
+                }
+            });
+        });
+    }
 
     addWeek(author, title, subject, contents, week, goal1, goal2, goal3) {
         if (goal1) {

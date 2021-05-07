@@ -1,0 +1,129 @@
+<html lang="en">
+    <head>
+        {{> partials/header}}
+    </head>
+    <body class="container">
+        <a href="/">
+            <h1>{{ title }}</h1>
+        </a>
+
+        
+
+        <h4>
+            Old Plan
+        </h4>
+
+        {{#entries}}
+            <div class="card" data-id="{{ _id }}">
+                <div class="card-header">
+                    Written by
+                    <a href="/user/{{ author }}">{{ author }}</a>, on
+                    {{ published }}
+                </div>
+                <div class="card-body">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Goal #1:
+                                    {{ subject.0 }}</h5>
+                                <p class="card-text">Goal contents:
+                                    {{contents.0}}</p>
+                                <p class="card-text">Completed:
+                                    {{completed.goal1}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Goal #2:
+                                    {{ subject.1 }}</h5>
+                                <p class="card-text">Goal contents:
+                                    {{contents.1}}</p>
+                                <p class="card-text">Completed:
+                                    {{completed.goal2}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Goal #3:
+                                    {{ subject.2 }}</h5>
+                                <p class="card-text">Goal contents:
+                                    {{contents.2}}</p>
+                                <p class="card-text">Completed:
+                                    {{completed.goal3}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/entries}}
+
+        <form method="post" role="form" action="">
+            <div>
+                <label for="title">Title of Plan</label><input type="text" id="title" name="title" placeholder="Enter title" required></div>
+            <div>
+                <label for="author">Author</label><input type="text" class="form-control" id="author" name="author" value="{{user}}" placeholder="Written by" required readonly></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="subject1">Goal</label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Entry fitness goal" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contents">Goal Breakdown</label>
+                            <textarea class="form-control" id="contents" name="contents" placeholder="Goal breakdown." rows="3" required></textarea>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="goal" name="goal1">
+                            <label for="goal1">Complete?</label>
+                        </div>
+
+
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="subject">Goal</label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Entry fitness goal" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contents">Goal Breakdown</label>
+                            <textarea class="form-control" id="contents" name="contents" placeholder="Goal breakdown." rows="3" required></textarea>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="goal" name="goal2">
+                            <label for="goal2">Complete?</label>
+                        </div>
+
+                    </div>
+                    <div class="col-sm">
+
+                        <div class="form-group">
+                            <label for="subject">Goal</label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Entry fitness goal" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contents">Goal Breakdown</label>
+                            <textarea class="form-control" id="contents" name="contents" placeholder="Goal breakdown." rows="3" required></textarea>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="goal" name="goal3">
+                            <label for="goal3">Complete?</label>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <label for="week">Week</label>
+                    <input type="week" id="week" name="week" min="1" required></div>
+            </div>
+
+            <div class="form-group"><input type="submit" value="Post entry" class="btn btn-primary"></div>
+        </form>
+    </body>
+</html></body></html>
