@@ -32,6 +32,10 @@ router.get("/about", function (req, res) {
     res.redirect("/about.html");
 });
 
+router.get("/user", function (req, res) {
+    res.redirect("/");
+})
+
 router.get("/login", controller.show_login_page);
 
 router.post("/login", auth.authorize("/login"), controller.post_login);
