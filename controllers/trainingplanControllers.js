@@ -74,20 +74,6 @@ exports.show_my_plans = function (req, res){
         });
 }
 
-// exports.post_new_entry = function (req, res) {
-//     // for debugging - to show button click worked
-//     console.log("processing post-new_entry controller");
-//     if (!req.body) {
-//         // only happens if the entry doesn't have an author
-//         response.status(400).send("Entries must have an author.");
-//         return;
-//     }
-//     //calls function to add entry to database
-//     db.addEntry(req.body.author, req.body.subject, req.body.contents);
-//     // redirects to root
-//     res.redirect("/");
-// };
-
 exports.post_new_week = function (req, res) {
     // for debugging - to show button click worked
     console.log("processing post-new_entry controller");
