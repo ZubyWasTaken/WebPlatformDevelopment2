@@ -18,9 +18,9 @@ router.post("/new", ensureLoggedIn("/login"), controller.post_new_week);
 
 router.get("/delete/:id", controller.delete_entry);
 
-router.get("/posts/:author", controller.show_user_entries);
+router.get("/user/:author", controller.show_user_entries);
 
-router.get("/:author/:id", controller.show_single_entry);
+router.get("/user/:author/:id", controller.show_single_entry);
 
 router.get("/:id/edit", controller.show_edit_page);
 

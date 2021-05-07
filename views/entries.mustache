@@ -5,7 +5,9 @@
     </head>
 
     <body class="container">
-        <h1>{{ title }}</h1>
+        <a href="/">
+            <h1>{{ title }}</h1>
+        </a>
 
         {{> partials/buttons}}
 
@@ -13,7 +15,7 @@
             <div class="card" data-id="{{ _id }}">
                 <div class="card-header">
                     Written by
-                    <a href="/posts/{{ author }}">{{ author }}</a>, on
+                    <a href="/user/{{ author }}">{{ author }}</a>, on
                     {{ published }}
                 </div>
                 <div class="card-body">
@@ -57,7 +59,7 @@
                     </div>
                 </div>
                 <div class="clearfix">
-                    <a href="/{{author}}/{{ _id }}">
+                    <a href="/user/{{author}}/{{ _id }}">
                         <input type="submit" value="View" class="btn btn-primary"/>
                     </a>
 
@@ -69,7 +71,7 @@
                         <input type="submit" value="Delete" class="btn btn-primary"/>
                     </a>
                 </div>
-                
+
             </div>
             <br></body>
     </body>
