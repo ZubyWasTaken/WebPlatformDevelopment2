@@ -6,14 +6,15 @@
 ## Developed using Node.js and Node Express with NeDB
 
 1. To install node modules
+
 ```
 npm i
 ```
 
-2. To start the node server and the website on http://localhost:3000/
+2. To run following command in root directory to launch the website on http://localhost:3000/
 
 ```
-npm start
+node index
 ```
 
 ###### Scope of project
