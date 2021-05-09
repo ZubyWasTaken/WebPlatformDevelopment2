@@ -52,24 +52,6 @@ class TrainingPlan {
         });
     }
 
-    getMyEntries(author) {
-        //return a Promise object, which can be resolved or rejected
-        return new Promise((resolve, reject) => {
-            //use the find() function of the database to get the data,
-            //with error first callback function, err for error, entries for data
-            this.db.find({ author: author }, function (err, entries) {
-                //if error occurs reject Promise
-                if (err) {
-                    reject(err);
-                    //if no error resolve the promise and return the data
-                } else {
-                    resolve(entries);
-                    //returns all entries
-                }
-            });
-        });
-    }
-
     addWeek(author, title, subject, contents, week, goal1, goal2, goal3) {
         if (goal1) {
             goal1 = "true";
@@ -91,7 +73,6 @@ class TrainingPlan {
             title: title,
             subject: subject,
             contents: contents,
-            // published: new Date().toISOString().split("T")[0],
             published: week,
             completed: { goal1, goal2, goal3 },
         };
@@ -126,8 +107,7 @@ class TrainingPlan {
         });
     }
 
-    // Returns entries that match a specific author
-    // authorName is passed in from clicking the coloured name in entry
+    // Returns entries for a specific author/user
     getEntriesByUser(authorName) {
         return new Promise((resolve, reject) => {
             // searches database for matching author name

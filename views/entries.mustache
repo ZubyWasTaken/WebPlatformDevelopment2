@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {{> partials/header}}
+        {{ > partials/header }}
     </head>
 
     <body class="container">
@@ -9,63 +9,64 @@
             <h1>{{ title }}</h1>
         </a>
 
-        {{> partials/buttons}}
+        {{ > partials/buttons }}
 
         {{#entries}}
-            <div class="card" data-id="{{ _id }}">
-                 <div class="card-header">
-                    <b>{{title}}</b>
-                    - Written by
-                    <a href="/user/{{ author }}">{{ author }}</a>, on
-                    {{ published }}
-                </div>
-                <div class="card-body">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Goal #1:
-                                    {{ subject.0 }}</h5>
-                                <p class="card-text">Goal contents:
-                                    {{contents.0}}</p>
-                                <p class="card-text">Completed:
-                                    {{completed.goal1}}</p>
+                <div class="card" data-id="{{ _id }}">
+                    <div class="card-header">
+                        <b>{{ title }}</b>
+                        - Written by
+                        <a href="/user/{{ author }}">{{ author }}</a>, on
+                        {{ published }}
+                    </div>
+                    <div class="card-body">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Goal #1:
+                                        {{ subject.0 }}</h5>
+                                    <p class="card-text">Goal contents:
+                                        {{ contents.0 }}</p>
+                                    <p class="card-text">Completed:
+                                        {{ completed.goal1 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Goal #2:
+                                        {{ subject.1 }}</h5>
+                                    <p class="card-text">Goal contents:
+                                        {{ contents.1 }}</p>
+                                    <p class="card-text">Completed:
+                                        {{ completed.goal2 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Goal #3:
+                                        {{ subject.2 }}</h5>
+                                    <p class="card-text">Goal contents:
+                                        {{ contents.2 }}</p>
+                                    <p class="card-text">Completed:
+                                        {{ completed.goal3 }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Goal #2:
-                                    {{ subject.1 }}</h5>
-                                <p class="card-text">Goal contents:
-                                    {{contents.1}}</p>
-                                <p class="card-text">Completed:
-                                    {{completed.goal2}}</p>
-                            </div>
-                        </div>
+                    <div class="clearfix">
+                        <a href="/share/{{ author }}/{{ _id }}">
+                            <input type="submit" value="Share" class="btn btn-primary"/>
+                        </a>
                     </div>
-                    <br>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Goal #3:
-                                    {{ subject.2 }}</h5>
-                                <p class="card-text">Goal contents:
-                                    {{contents.2}}</p>
-                                <p class="card-text">Completed:
-                                    {{completed.goal3}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix">
-                    <a href="/share/{{author}}/{{ _id }}">
-                        <input type="submit" value="Share" class="btn btn-primary"/>
-                    </a>
-                </div>
 
-            </div>
-            <br></body>
+                </div>
+                <br></body>
+        </body>
     </body>
-</html>{{/entries}}{{^entries}}No entries yet :-(.</body></html>{{/entries}}</body></html>
+</html>{{/entries}}{{ ^entries }}No entries yet :-(.</body></html>{{/entries}}</body></html>
