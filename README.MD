@@ -17,7 +17,7 @@ npm i
 2. To run following command in root directory to launch the website on http://localhost:3000/
 
 ```
-node index
+node run build
 ```
 
 ###### Scope of project
