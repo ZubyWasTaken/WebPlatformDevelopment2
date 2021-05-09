@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {{> partials/header}}
+        {{ > partials/header }}
     </head>
 
     <body class="container">
@@ -9,12 +9,12 @@
             <h1>{{ title }}</h1>
         </a>
 
-        {{> partials/buttons}}
+        {{ > partials/buttons }}
 
         {{#entries}}
             <div class="card" data-id="{{ _id }}">
                 <div class="card-header">
-                    <b>{{title}}</b>
+                    <b>{{ title }}</b>
                     - Written by
                     <a href="/user/{{ author }}">{{ author }}</a>, on
                     {{ published }}
@@ -27,9 +27,9 @@
                                 <h5 class="card-title">Goal #1:
                                     {{ subject.0 }}</h5>
                                 <p class="card-text">Goal contents:
-                                    {{contents.0}}</p>
+                                    {{ contents.0 }}</p>
                                 <p class="card-text">Completed:
-                                    {{completed.goal1}}</p>
+                                    {{ completed.goal1 }}</p>
                             </div>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                                 <h5 class="card-title">Goal #2:
                                     {{ subject.1 }}</h5>
                                 <p class="card-text">Goal contents:
-                                    {{contents.1}}</p>
+                                    {{ contents.1 }}</p>
                                 <p class="card-text">Completed:
-                                    {{completed.goal2}}</p>
+                                    {{ completed.goal2 }}</p>
                             </div>
                         </div>
                     </div>
@@ -53,15 +53,15 @@
                                 <h5 class="card-title">Goal #3:
                                     {{ subject.2 }}</h5>
                                 <p class="card-text">Goal contents:
-                                    {{contents.2}}</p>
+                                    {{ contents.2 }}</p>
                                 <p class="card-text">Completed:
-                                    {{completed.goal3}}</p>
+                                    {{ completed.goal3 }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         {{/entries}}
-        {{^entries}}
+        {{ ^entries }}
         No entries yet :-(.</body>
 </html></body></html>{{/entries}}</body></html></html
