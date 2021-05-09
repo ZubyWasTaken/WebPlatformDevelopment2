@@ -22,7 +22,7 @@ class UserDAO {
         // console.log('user record inserted in init');
         return this;
     }
-    
+
     // creates a new user account
     create(username, password) {
         const that = this;
