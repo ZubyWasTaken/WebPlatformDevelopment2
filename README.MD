@@ -13,12 +13,6 @@ npm i
 2. To start the node server and the website on http://localhost:3000/
 
 ```
-node index
-```
-
-or
-
-```
 npm start
 ```
 
