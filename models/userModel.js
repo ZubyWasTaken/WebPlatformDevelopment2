@@ -3,12 +3,10 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 class UserDAO {
     constructor(dbFilePath) {
-       
-          
-            this.db = new Datastore({ filename: "users.db", autoload: true });
-
+        this.db = new Datastore({ filename: "users.db", autoload: true });
     }
     // for the demo the password is the bcrypt of the user name
+    // no longer used
     init() {
         // this.db.insert({
         //     user: "Peter",
@@ -24,14 +22,20 @@ class UserDAO {
         // console.log('user record inserted in init');
         return this;
     }
+    
+    // creates a new user account
     create(username, password) {
         const that = this;
+        // used to hash the password
         bcrypt.hash(password, saltRounds).then(function (hash) {
+            //entry of username and hashed password
             var entry = {
                 user: username,
                 password: hash,
             };
-            console.log('user entry is: ', entry);
+            console.log("user entry is: ", entry);
+
+            //enters that hashed entry into database
             that.db.insert(entry, function (err) {
                 if (err) {
                     console.log("Can't insert user: ", username);
@@ -39,6 +43,8 @@ class UserDAO {
             });
         });
     }
+
+    // looks up user to see if it already exists
     lookup(user, cb) {
         this.db.find({ user: user }, function (err, entries) {
             if (err) {
